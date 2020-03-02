@@ -1,0 +1,61 @@
+import java.util.*;
+import java.text.DecimalFormat;
+public class Main {
+    public static void main(String[] args) {
+        Main in = new Main();
+        Scanner sc = new Scanner(System.in);
+        while(sc.hasNext()) {
+            int n = sc.nextInt();
+            int[] score = new int[n];
+            for(int i = 0; i < n; i++) {
+                score[i] = sc.nextInt();
+            }
+            int[] grade = new int[n];
+            for(int i = 0;i < n; i++) {
+                grade[i] = sc.nextInt();
+            }
+            in.xuefen(n,score,grade);
+        }
+    }
+    public static void xuefen(int n,int[] score,int[] grade) {
+        double result = 0;
+        int sum = 0;
+        for(int i = 0 ;i < n;i++) {
+            sum += score[i];
+        }
+        double[] arr = new double[n];
+        for(int i =0;i<n;i++){
+            int num = grade[i];
+            if(num < 60){
+                arr[i] = 0;
+            }else if(60 <= num && num <= 63){
+                arr[i] = 1.0;
+            }else if(64 <= num && num <= 67){
+                arr[i] = 1.5;
+            }else if(68 <= num && num <= 71){
+                arr[i] = 2.0;
+            }else if(72 <= num && num <= 74){
+                arr[i] = 2.3;
+            }else if(75 <= num && num <= 77){
+                arr[i] = 2.7;
+            }else if(78 <= num && num <= 81){
+                arr[i] = 3.0;
+            }else if(82 <= num && num <= 84){
+                arr[i] = 3.3;
+            }else if(85 <= num && num <= 89){
+                arr[i] = 3.7;
+            }else{
+                arr[i] = 4.0;
+            }
+        }
+        
+        double t = 0;
+        for(int i = 0;i<n;i++){
+            t += score[i]*arr[i];
+        }
+        result = t/sum;
+        DecimalFormat df = new DecimalFormat("#.00");
+        System.out.println(df.format(result));
+
+    }
+}
